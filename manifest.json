@@ -4,7 +4,8 @@
   "description": " ",
   "version": "1.0",
   "action": {
-    "default_icon": "images/dropper.png"
+    "default_icon": "images/dropper.png",
+    "default_popup":"index.html"
   },
   "background": {
     "service_worker": "service-worker.js",
