@@ -8,6 +8,13 @@
   },
   "background": {
     "service_worker": "service-worker.js",
-    "type":"module"
-  }
+    "type": "module"
+  },
+  "permissions": [
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ]
 }
