@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "My Extension",
+  "description": " ",
+  "version": "1.0",
+  "action": {
+    "default_icon": "images/dropper.png"
+  },
+  "background": {
+    "service_worker": "service-worker.js",
+    "type":"module"
+  }
+}
