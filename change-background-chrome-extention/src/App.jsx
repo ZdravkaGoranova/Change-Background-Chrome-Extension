@@ -1,10 +1,22 @@
-import { useState } from 'react'
+
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+const onClick = async () => {
+  if (typeof chrome !== 'undefined' && chrome.tabs) {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    console.log('Active tab:', tab);
+  } else {
+    console.error(
+      'Chrome API is not available. Make sure this is running as a Chrome Extension.',
+    );
+  }
+};
+
+
 
   return (
     <>
@@ -18,9 +30,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+     
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
