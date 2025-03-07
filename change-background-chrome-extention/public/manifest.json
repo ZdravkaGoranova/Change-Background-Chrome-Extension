@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "My Vite Extension",
+  "name": "Change Color",
   "description": "A Chrome extension built with React and Vite",
   "version": "1.0.0",
   "action": {
