@@ -1,45 +1,58 @@
-
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 function App() {
+  const [color, setColor] = useState('#ffffff');
+  const onClick = async () => {
+    let [tab] = await window.chrome.tabs.query({
+      active: true,
+      currentWindow: true,
+    });
 
-const onClick = async () => {
-  if (typeof chrome !== 'undefined' && chrome.tabs) {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    console.log('Active tab:', tab);
-  } else {
-    console.error(
-      'Chrome API is not available. Make sure this is running as a Chrome Extension.',
-    );
-  }
-};
-
-
+    window.chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      args: [color],
+      func: (color) => {
+        // alert('Hello from my extention!');
+        document.body.style.backgroundColor = color;
+      },
+    });
+  };
 
   return (
     <>
       <div>
         <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <img src="/dropper.png" className="logo" alt="Vite logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-     
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <h1>Change Background </h1>
+      <h4>
+        <i>Chrome Extension</i>
+      </h4>
+      <div
+        className="card"
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: '15px',
+          padding: '10px',
+        }}
+      >
+        <input
+          type="color"
+          onChange={(e) => {
+            setColor(e.currentTarget.value);
+          }}
+          value={color}
+        />
+        <button id="clickButton" onClick={onClick}>
+          Change Color
+        </button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

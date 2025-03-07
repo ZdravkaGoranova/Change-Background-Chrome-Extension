@@ -7,11 +7,6 @@
     "default_popup": "index.html",
     "default_icon": "dropper.png"
   },
-  "permissions": [
-    "scripting"
-  ],
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*"
-  ]
+  "permissions": ["tabs", "scripting"],
+  "host_permissions": ["http://*/*", "https://*/*"]
 }
